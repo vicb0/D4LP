@@ -1,10 +1,10 @@
 D4LP
 ===============
 
-**<h1> CURRENTLY WORKING ON AN UPDATER </h1>**
-Note: every now and then, Youtube changes some shit in their shits and this downloader breaks.
-The pytube module doesnt get updated that fast so people usually fix it themselves by adjusting whatever is causing errors in the pytube module code.
-Im working on an updater that'll check for the current version in this repository and compare it with the locally installed executable (which is not yet available to download).
+**<h1> DISCLAIMER </h1>**
+Every now and then, Youtube changes some shit in their shits and this downloader breaks.
+The pytube module doesn't get updated that fast so people usually fix it themselves by adjusting whatever is causing the error in the pytube module source code.
+That being said, it's possible you clone this repo and the code doesn't work, but the installer works fine, since I fix the pytube source code manually.
 
 **D4LP:** Downloader for Lazy People
 
