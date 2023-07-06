@@ -43,12 +43,16 @@ def download_playlist(file_dir, path):
         links = f.readlines()
 
     success = 0
+    n = len(links)
+
     for c, link in enumerate(links, 1):
         if link and not link.isspace():
-            print(f"{c}/{len(links)}")
+            print(f"{c}/{n}")
             success += download_single(link, path)
+        else:
+            n -= 1
             
-    print(f"{success} out of {len(links)} downloaded successfully.")
+    print(f"{success} out of {n} downloaded successfully.")
 
 
 def main():
