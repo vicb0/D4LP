@@ -93,6 +93,10 @@ def close():
     os._exit(1)
 
 
+def clear():
+    os.system("clear||cls")
+
+
 def main():
     global SETTINGS
     updater.check_for_updates()
@@ -111,7 +115,8 @@ def main():
         "about": about,
         "dir": get_download_path,
         "settings": change_settings,
-        "exit": close
+        "exit": close,
+        "clear": clear
     }
 
     print("Type 'help' for more information.")
