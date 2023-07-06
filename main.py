@@ -37,7 +37,7 @@ def select(string):
 
 
 def main():
-    updater.check_for_update()
+    updater.check_for_updates()
     settings = load_settings()
     
     linker = {
