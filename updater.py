@@ -16,7 +16,7 @@ def check_for_updates():
         print(f"Couldn't check for updates. The program might not work properly.\nError: {err}")
         return
 
-    latest = response.json()[0].get("tag_name")
+    latest = response.json().get("tag_name")
 
     if latest > VERSION:
         confirm_update()
