@@ -1,0 +1,6 @@
+*.ico
+*.json
+setup.py
+__pycache__
+build
+dist
