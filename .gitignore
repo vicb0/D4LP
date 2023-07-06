@@ -1,5 +1,3 @@
-*.ico
 *.json
 __pycache__
 build
-dist
