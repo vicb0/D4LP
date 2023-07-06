@@ -1,4 +1,4 @@
-import json
+import os
 
 import requests
 
@@ -6,11 +6,33 @@ from consts import *
 
 
 def check_for_updates():
-    response = requests.get(REPO)
+    try:
+        response = requests.get(REPO)
+    except requests.exceptions.ConnectionError:
+        input("No internet available.")
+        os._exit(1)
+    except requests.exceptions.RequestException as err:
+        print(f"Couldn't check for updates. The program might not work properly.\nError: {err}")
+        return
+
     latest = response.json()[0].get("tag_name")
 
     if latest > VERSION:
-        print("UPDATE")
+        confirm_update()
+
+
+def confirm_update():
+    print("A new version is available. Not updating might lead to the program not working properly. Do you wish to update? (y/yes/n/no)")
+
+    while True:
+        opt = input().lower()
+
+        if opt in ("y", "yes"):
+            print("lead to the update page")
+        elif opt in ("n", "no"):
+            break
+        
+    os.system("clear||cls")
 
 
 def main():
