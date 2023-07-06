@@ -19,19 +19,19 @@ def check_for_updates():
     latest = response.json().get("tag_name")
 
     if latest > VERSION:
-        confirm_update()
+        confirm_update(latest[1:])
     else:
         print("Your program is up to date!")
 
 
-def confirm_update():
+def confirm_update(version):
     print("A new version is available. Not updating might lead to the program not working properly. Do you wish to update? (y/yes/n/no)")
 
     while True:
         opt = input().lower()
 
         if opt in ("y", "yes"):
-            webbrowser.open(REPO_DIST)
+            webbrowser.open(f"{REPO_DIST}/D4LP-{version}-win64.msi")
             os._exit(1)
         elif opt in ("n", "no"):
             break
