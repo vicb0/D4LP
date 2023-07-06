@@ -31,7 +31,7 @@ def confirm_update():
         opt = input().lower()
 
         if opt in ("y", "yes"):
-            webbrowser.open(REPO_RELEASES)
+            webbrowser.open(REPO_DIST)
             os._exit(1)
         elif opt in ("n", "no"):
             break
