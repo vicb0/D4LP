@@ -29,7 +29,7 @@ def confirm_update():
         opt = input().lower()
 
         if opt in ("y", "yes"):
-            webbrowser.open("https://github.com/victorborneo/D4LP/tree/main/installers")
+            webbrowser.open("https://github.com/victorborneo/D4LP/tree/main/dist")
             os._exit(1)
         elif opt in ("n", "no"):
             break
