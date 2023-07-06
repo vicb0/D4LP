@@ -1,6 +1,6 @@
 from cx_Freeze import setup, Executable
 
-from main import VERSION
+from consts import VERSION
 
 
 setup(
