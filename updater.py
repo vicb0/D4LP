@@ -1,4 +1,5 @@
 import os
+import webbrowser
 
 import requests
 
@@ -28,7 +29,8 @@ def confirm_update():
         opt = input().lower()
 
         if opt in ("y", "yes"):
-            print("lead to the update page")
+            webbrowser.open("https://github.com/victorborneo/D4LP/tree/main/installers")
+            os._exit(1)
         elif opt in ("n", "no"):
             break
         
