@@ -127,8 +127,7 @@ def main():
         try:
             downloader_linker[opt](string, SETTINGS["download_path"])
         except KeyError:
-            if (func := others_linker.get(opt)) is not None:
-                func()
+            pass
 
 
 if __name__ == "__main__":
