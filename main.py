@@ -43,6 +43,8 @@ def help_():
     settings -> Check/change settings.
     dir -> Get the download directory.
     about -> Check some information about the program.
+    exit -> Close the program.
+    clear -> Clear the console.
 """)
 
 
