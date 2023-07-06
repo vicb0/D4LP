@@ -1,7 +1,7 @@
 D4LP
 ===============
 
-**<h1> CURRENTLY WORKING ON AN UPDATER**
+**<h1> CURRENTLY WORKING ON AN UPDATER </h1>**
 
 **D4LP:** Downloader for Lazy People
 
