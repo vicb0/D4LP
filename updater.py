@@ -8,7 +8,7 @@ from consts import *
 
 def check_for_updates():
     try:
-        response = requests.get(REPO)
+        response = requests.get(REPO_RELEASES)
     except requests.exceptions.ConnectionError:
         input("No internet available.")
         os._exit(1)
@@ -20,6 +20,8 @@ def check_for_updates():
 
     if latest > VERSION:
         confirm_update()
+    else:
+        print("Your program is up to date!")
 
 
 def confirm_update():
@@ -29,7 +31,7 @@ def confirm_update():
         opt = input().lower()
 
         if opt in ("y", "yes"):
-            webbrowser.open("https://github.com/victorborneo/D4LP/tree/main/dist")
+            webbrowser.open(REPO_RELEASES)
             os._exit(1)
         elif opt in ("n", "no"):
             break
