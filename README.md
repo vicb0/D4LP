@@ -1,10 +1,11 @@
 D4LP
 ===============
 
-**<h1> DISCLAIMER </h1>**
-Every now and then, Youtube changes some shit in their shits and this downloader breaks.
+**<h1> DISCLAIMERS </h1>**
+1. Every now and then, Youtube changes some shit in their shits and this downloader breaks.
 The pytube module doesn't get updated that fast so people usually fix it themselves by adjusting whatever is causing the error in the pytube module source code.
 That being said, it's possible you clone this repo and the code doesn't work, but the installer works fine, since I fix the pytube source code manually.
+2. Windows might detect this program as a virus. Just click "More info" and then "Run anyway". I don't really know how to fix this issue, sorry.
 
 **D4LP:** Downloader for Lazy People
 
