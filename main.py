@@ -68,6 +68,7 @@ def change_download_path():
         print("Program does not have permission to write to this directory.")
         return
 
+    new_dir = os.path.abspath(new_dir)
     with open("./settings.json", "w", encoding="utf8") as f:
         json.dump({"download_path": new_dir}, f, indent=4, ensure_ascii=False)
 
