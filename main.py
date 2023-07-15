@@ -27,7 +27,8 @@ def load_settings():
 
 
 def select(string):
-    if string.startswith("https://www.youtube.com"):
+    if string.startswith("https://www.youtube.com") or \
+            string.startswith("https://youtu.be"):
         return "link"
     
     if os.path.isfile(string.replace("\"", "")):
