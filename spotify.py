@@ -1,3 +1,5 @@
+from threading import Thread
+
 from urllib.error import HTTPError
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
@@ -20,39 +22,57 @@ def parse_author(html):
     return html.find("a").text
 
 
-def download_single(link, path):
+def download_single(link, path, counters, n):
     try:
         html = parse_html(link)
     except HTTPError:
-        print("Error: Not a valid link.")
+        counters['count'] += 1
+        youtube.sync_print(f"Error: Not a valid link. ({link}) {counters['count']}/{n}")
         return 0
 
     try:
         name = parse_name(html)
         author = parse_author(html)    
-        youtube.download_by_name(f"{author} {name}", path)
+        name = youtube.download_by_name(f"{author} {name}", path)
     except Exception as err:
-        print(f"Error: {err}")
+        counters['count'] += 1
+        youtube.sync_print(f"Error: {err} ({link}) {counters['count']}/{n}")
         return 0
     
+    counters['success'] += 1
+    counters['count'] += 1
+    youtube.sync_print(f"Downloaded {name} {counters['count']}/{n}")
     return 1
 
 
 def download_playlist(file_dir, path):
     with open(file_dir.replace("\"", ""), "r") as f:
-        links = f.readlines()
+        links = [link.strip() for link in f.readlines() if link and not link.isspace()]
 
-    success = 0
+    threads = []
+    counters = {"success": 0, 'count': 0}
     n = len(links)
+    offset = 0
 
-    for c, link in enumerate(links, 1):
-        if link and not link.isspace():
-            print(f"{c}/{n}")
-            success += download_single(link, path)
-        else:
-            n -= 1
-            
-    print(f"{success} out of {n} downloaded successfully.")
+    while links:
+        for i in range(n - 1 - offset, -1, -1):
+            t = Thread(target=download_single, args=[links[i], path, counters, n])
+            threads.append(t)
+            links.pop(-1)
+            offset += 1
+
+            if len(threads) >= 100:
+                break
+
+        for thread in threads:
+            thread.start()
+
+        for thread in threads:
+            thread.join(60)
+
+        threads = []
+
+    print(f"{counters['success']} out of {n} downloaded successfully.")
 
 
 def main():
