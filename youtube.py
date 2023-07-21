@@ -12,9 +12,14 @@ def sync_print(*args, **kwargs):
         print(*args, **kwargs)
 
 
-def download(obj, path):
+def convert_to_filename(obj):
     name = re.sub(r"\\|\/|\:|\*|\?|\"|\<|\>|\|", "", obj.title)
     name = f"{name}.mp3"
+
+    return name
+
+
+def download(obj, name, path):
     sync_print("Downloading", name)
 
     obj.streams.filter(only_audio=True).order_by("abr").desc().first().download(
@@ -25,17 +30,17 @@ def download(obj, path):
     return name
 
 
-def download_by_link(link, path):
+def download_by_link(link):
     yt = YouTube(link)
     
-    return download(yt, path)
+    return yt
 
 
-def download_by_name(name, path):
+def download_by_name(name):
     s = Search(name)
     yt = s.results[0]
 
-    return download(yt, path)
+    return yt
 
 
 def main():
