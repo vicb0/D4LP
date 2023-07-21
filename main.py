@@ -43,6 +43,7 @@ def help_():
     chkupd -> Manually check for updates.
     settings -> Check/change settings.
     dir -> Get the download directory.
+    open -> Open the songs' directory.
     about -> Check some information about the program.
     exit -> Close the program.
     clear -> Clear the console.
@@ -93,6 +94,10 @@ def get_download_path():
     print(f"Download directory set to: {SETTINGS['download_path']}")
 
 
+def open_songs_folder():
+    os.system(f"start {SETTINGS['download_path']}")
+
+
 def close():
     os._exit(1)
 
@@ -107,10 +112,9 @@ def main():
 
     SETTINGS = load_settings()
     
-    downloader_linker = {
+    youtube_linker = {
         "link": youtube.download_by_link,
-        "name": youtube.download_by_name,
-        "spotify": spotify.download_playlist
+        "name": youtube.download_by_name
     }
 
     others_linker = {
@@ -118,6 +122,7 @@ def main():
         "chkupd": updater.check_for_updates,
         "about": about,
         "dir": get_download_path,
+        "open": open_songs_folder,
         "settings": change_settings,
         "exit": close,
         "clear": clear
@@ -127,6 +132,9 @@ def main():
     while True:
         string = input(">")
         
+        if not string or string.isspace():
+            continue
+
         if (func := others_linker.get(string.lower().strip())) is not None:
             func()
             continue
@@ -134,9 +142,11 @@ def main():
         opt = select(string)
 
         try:
-            downloader_linker[opt](string, SETTINGS["download_path"])
+            yt_obj = youtube_linker[opt](string)
+            filename = youtube.convert_to_filename(yt_obj)
+            youtube.download(yt_obj, filename, SETTINGS["download_path"])
         except KeyError:
-            pass
+            spotify.download_playlist(string, SETTINGS["download_path"])
 
 
 if __name__ == "__main__":
