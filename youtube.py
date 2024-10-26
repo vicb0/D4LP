@@ -1,7 +1,7 @@
 import re
 from threading import Lock
 
-from pytube import YouTube, Search
+from pytubefix import YouTube, Search
 
 
 print_lock = Lock()
@@ -38,7 +38,7 @@ def download_by_link(link):
 
 def download_by_name(name):
     s = Search(name)
-    yt = s.results[0]
+    yt = s.videos[0]
 
     return yt
 
