@@ -31,7 +31,7 @@ def confirm_update(version):
         opt = input().lower()
 
         if opt in ("y", "yes"):
-            webbrowser.open(f"{REPO_DIST}/D4LP-{version}-win64.msi")
+            webbrowser.open(f"{REPO_DIST}/tag/v{version}")
             os._exit(1)
         elif opt in ("n", "no"):
             break

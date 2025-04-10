@@ -9,7 +9,7 @@ setup(
     description="Application for downloading musics from Youtube and Spotify quickly.",
     options={
         "build_exe": {
-            "packages": ["os", "json", "re", "bs4", "pytube", "urllib.error", "urllib.request"]
+            "packages": ["os", "json", "re", "bs4", "pytubefix", "urllib.error", "urllib.request"]
         }
     },
     executables=[
