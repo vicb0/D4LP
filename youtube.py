@@ -31,7 +31,7 @@ def download(obj, name, path):
 
 
 def download_by_link(link):
-    yt = YouTube(link)
+    yt = YouTube(link, 'WEB')
     
     return yt
 
